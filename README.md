@@ -1,126 +1,207 @@
-# 🧠 LLaMA 3 LoRA Chat Adapter
-
-This repository contains a **LoRA (Low-Rank Adaptation) fine-tuned adapter** for the base model:
-
-> `unsloth/Llama-3.2-3B-Instruct`
-
-The model is optimized for **text generation / chatbot-style interactions** using parameter-efficient fine-tuning.
-
+---
+base_model: unsloth/Llama-3.2-3B-Instruct
+library_name: peft
+pipeline_tag: text-generation
+tags:
+- base_model:adapter:unsloth/Llama-3.2-3B-Instruct
+- lora
+- transformers
 ---
 
-## 🚀 Overview
+# Model Card for Model ID
 
-This project provides a lightweight fine-tuned adapter instead of a full model.
-Using LoRA significantly reduces:
+<!-- Provide a quick summary of what the model is/does. -->
 
-* Training cost
-* Storage requirements
-* Inference memory usage
 
----
 
-## 🧩 Model Details
+## Model Details
 
-* **Base Model:** LLaMA 3.2 (3B Instruct)
-* **Fine-tuning Method:** LoRA (PEFT)
-* **Task Type:** Causal Language Modeling
-* **Library:** HuggingFace Transformers + PEFT
-* **LoRA Rank (r):** 16
-* **LoRA Alpha:** 32
-* **Dropout:** 0.05
+### Model Description
 
----
+<!-- Provide a longer summary of what this model is. -->
 
-## 📁 Repository Structure
 
-```
-├── adapter_model.safetensors     # Trained LoRA weights
-├── adapter_config.json           # LoRA configuration
-├── tokenizer.json                # Tokenizer
-├── tokenizer_config.json
-├── special_tokens_map.json
-├── chat_template.jinja           # Prompt formatting template
-├── README.md
-```
 
----
+- **Developed by:** [More Information Needed]
+- **Funded by [optional]:** [More Information Needed]
+- **Shared by [optional]:** [More Information Needed]
+- **Model type:** [More Information Needed]
+- **Language(s) (NLP):** [More Information Needed]
+- **License:** [More Information Needed]
+- **Finetuned from model [optional]:** [More Information Needed]
 
-## ⚙️ Installation
+### Model Sources [optional]
 
-```bash
-pip install transformers peft accelerate
-```
+<!-- Provide the basic links for the model. -->
 
----
+- **Repository:** [More Information Needed]
+- **Paper [optional]:** [More Information Needed]
+- **Demo [optional]:** [More Information Needed]
 
-## ▶️ Usage
+## Uses
 
-```python
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import PeftModel
+<!-- Address questions around how the model is intended to be used, including the foreseeable users of the model and those affected by the model. -->
 
-base_model = "unsloth/Llama-3.2-3B-Instruct"
+### Direct Use
 
-tokenizer = AutoTokenizer.from_pretrained(base_model)
+<!-- This section is for the model use without fine-tuning or plugging into a larger ecosystem/app. -->
 
-model = AutoModelForCausalLM.from_pretrained(base_model)
-model = PeftModel.from_pretrained(model, "./")  # path to adapter
+[More Information Needed]
 
-prompt = "Explain AI in simple terms."
+### Downstream Use [optional]
 
-inputs = tokenizer(prompt, return_tensors="pt")
-outputs = model.generate(**inputs, max_new_tokens=100)
+<!-- This section is for the model use when fine-tuned for a task, or when plugged into a larger ecosystem/app -->
 
-print(tokenizer.decode(outputs[0]))
-```
+[More Information Needed]
 
----
+### Out-of-Scope Use
 
-## 🧠 How It Works
+<!-- This section addresses misuse, malicious use, and uses that the model will not work well for. -->
 
-* The base LLaMA model remains unchanged
-* LoRA injects trainable matrices into:
+[More Information Needed]
 
-  * Query projection (`q_proj`)
-  * Key projection (`k_proj`)
-  * Value projection (`v_proj`)
-  * Output projection (`o_proj`)
+## Bias, Risks, and Limitations
 
-This allows efficient fine-tuning without modifying the full model.
+<!-- This section is meant to convey both technical and sociotechnical limitations. -->
 
----
+[More Information Needed]
 
-## 📌 Use Cases
+### Recommendations
 
-* Chatbots
-* Educational assistants
-* Domain-specific Q&A systems
-* AI-based apps (Flutter, FastAPI, etc.)
+<!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
 
----
+Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.
 
-## ⚠️ Limitations
+## How to Get Started with the Model
 
-* Requires base model to run
-* Performance depends on fine-tuning dataset
-* May inherit biases from base model
+Use the code below to get started with the model.
 
----
+[More Information Needed]
 
-## 📜 License
+## Training Details
 
-MIT license
+### Training Data
 
----
+<!-- This should link to a Dataset Card, perhaps with a short stub of information on what the training data is all about as well as documentation related to data pre-processing or additional filtering. -->
 
-## 🙌 Acknowledgements
+[More Information Needed]
 
-* HuggingFace Transformers
-* PEFT (Parameter-Efficient Fine-Tuning)
-* Unsloth LLaMA implementations
+### Training Procedure
 
----
+<!-- This relates heavily to the Technical Specifications. Content here should link to that section when it is relevant to the training procedure. -->
 
-## 📬 Contact
-https://github.com/aryaar04
+#### Preprocessing [optional]
 
+[More Information Needed]
+
+
+#### Training Hyperparameters
+
+- **Training regime:** [More Information Needed] <!--fp32, fp16 mixed precision, bf16 mixed precision, bf16 non-mixed precision, fp16 non-mixed precision, fp8 mixed precision -->
+
+#### Speeds, Sizes, Times [optional]
+
+<!-- This section provides information about throughput, start/end time, checkpoint size if relevant, etc. -->
+
+[More Information Needed]
+
+## Evaluation
+
+<!-- This section describes the evaluation protocols and provides the results. -->
+
+### Testing Data, Factors & Metrics
+
+#### Testing Data
+
+<!-- This should link to a Dataset Card if possible. -->
+
+[More Information Needed]
+
+#### Factors
+
+<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
+
+[More Information Needed]
+
+#### Metrics
+
+<!-- These are the evaluation metrics being used, ideally with a description of why. -->
+
+[More Information Needed]
+
+### Results
+
+[More Information Needed]
+
+#### Summary
+
+
+
+## Model Examination [optional]
+
+<!-- Relevant interpretability work for the model goes here -->
+
+[More Information Needed]
+
+## Environmental Impact
+
+<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
+
+Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
+
+- **Hardware Type:** [More Information Needed]
+- **Hours used:** [More Information Needed]
+- **Cloud Provider:** [More Information Needed]
+- **Compute Region:** [More Information Needed]
+- **Carbon Emitted:** [More Information Needed]
+
+## Technical Specifications [optional]
+
+### Model Architecture and Objective
+
+[More Information Needed]
+
+### Compute Infrastructure
+
+[More Information Needed]
+
+#### Hardware
+
+[More Information Needed]
+
+#### Software
+
+[More Information Needed]
+
+## Citation [optional]
+
+<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
+
+**BibTeX:**
+
+[More Information Needed]
+
+**APA:**
+
+[More Information Needed]
+
+## Glossary [optional]
+
+<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
+
+[More Information Needed]
+
+## More Information [optional]
+
+[More Information Needed]
+
+## Model Card Authors [optional]
+
+[More Information Needed]
+
+## Model Card Contact
+
+[More Information Needed]
+### Framework versions
+
+- PEFT 0.18.1
